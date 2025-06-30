@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,26 +12,29 @@ const LoginScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-
+      <Text style={styles.title}>Sign In</Text>
       <TextInput
-        placeholder="Email"
+        placeholder="E-mail or phone number"
         value={email}
         onChangeText={setEmail}
         style={styles.input}
         keyboardType="email-address"
+        placeholderTextColor="#999"
       />
-
       <TextInput
         placeholder="Password"
         value={password}
         onChangeText={setPassword}
         style={styles.input}
         secureTextEntry
+        placeholderTextColor="#999"
       />
-
-      <Pressable style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
+      <Pressable style={styles.loginButton} onPress={handleLogin}>
+        <Text style={styles.loginButtonText}>Log in</Text>
+      </Pressable>
+      <Text style={styles.orText}>OR</Text>
+      <Pressable style={styles.fbButton} onPress={() => {}}>
+        <Text style={styles.fbButtonText}>Login with Facebook</Text>
       </Pressable>
     </View>
   );
@@ -47,27 +50,55 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-    fontSize: 32,
-    marginBottom: 24,
-    textAlign: 'center',
+    fontSize: 28,
+    marginBottom: 32,
     fontWeight: 'bold',
+    color: '#ff6f91',
+    textAlign: 'left',
+    marginLeft: 4,
   },
   input: {
     height: 48,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
+    borderColor: '#bbb',
+    borderWidth: 1.5,
+    borderRadius: 24,
     marginBottom: 16,
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
+    backgroundColor: '#fff',
+    fontSize: 16,
   },
-  button: {
-    backgroundColor: '#2e86de',
+  loginButton: {
+    backgroundColor: '#ff6f91',
     paddingVertical: 14,
-    borderRadius: 8,
+    borderRadius: 24,
+    marginTop: 8,
+    marginBottom: 18,
+    alignItems: 'center',
   },
-  buttonText: {
+  loginButtonText: {
     color: '#fff',
     textAlign: 'center',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  orText: {
+    textAlign: 'center',
+    color: '#888',
+    marginVertical: 8,
+    fontSize: 15,
+    fontWeight: '500',
+  },
+  fbButton: {
+    backgroundColor: '#4267B2',
+    paddingVertical: 14,
+    borderRadius: 24,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  fbButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
