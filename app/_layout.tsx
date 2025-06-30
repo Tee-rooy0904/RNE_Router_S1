@@ -1,4 +1,6 @@
-import { Stack } from "expo-router";
+import { MaterialIcons } from '@expo/vector-icons';
+import { router, Stack } from "expo-router";
+import { Pressable } from 'react-native';
 
 export default function RootLayout() {
   return (
@@ -19,11 +21,25 @@ export default function RootLayout() {
       />
       <Stack.Screen 
         name="login" 
-        options={{ headerTitle: "Log-in Form" }} 
+        options={{
+          headerTitle: '',
+          headerLeft: () => (
+            <Pressable onPress={() => router.back()} hitSlop={10} style={{ marginLeft: 8 }}>
+              <MaterialIcons name="chevron-left" size={32} color="#ff6f91" />
+            </Pressable>
+          ),
+        }}
       />
       <Stack.Screen 
         name="signup" 
-        options={{ headerTitle: "Sign-up Form" }} 
+        options={{
+          headerTitle: '',
+          headerLeft: () => (
+            <Pressable onPress={() => router.back()} hitSlop={10} style={{ marginLeft: 8 }}>
+              <MaterialIcons name="chevron-left" size={32} color="#ff6f91" />
+            </Pressable>
+          ),
+        }}
       />
     </Stack>
   );
