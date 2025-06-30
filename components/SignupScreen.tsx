@@ -2,49 +2,52 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const SignupScreen: React.FC = () => {
+  const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSignup = () => {
-    if (password !== confirmPassword) {
-      alert('Passwords do not match!');
-      return;
-    }
     // Add your signup logic here
-    console.log('Signing up with:', email, password);
+    console.log('Signing up with:', fullName, phone, email, password);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
-
+      <Text style={styles.title}>Create new account</Text>
       <TextInput
-        placeholder="Email"
+        placeholder="Full Name"
+        value={fullName}
+        onChangeText={setFullName}
+        style={styles.input}
+        placeholderTextColor="#999"
+      />
+      <TextInput
+        placeholder="Phone Number"
+        value={phone}
+        onChangeText={setPhone}
+        style={styles.input}
+        keyboardType="phone-pad"
+        placeholderTextColor="#999"
+      />
+      <TextInput
+        placeholder="E-mail Address"
         value={email}
         onChangeText={setEmail}
         style={styles.input}
         keyboardType="email-address"
+        placeholderTextColor="#999"
       />
-
       <TextInput
         placeholder="Password"
         value={password}
         onChangeText={setPassword}
         style={styles.input}
         secureTextEntry
+        placeholderTextColor="#999"
       />
-
-      <TextInput
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-        style={styles.input}
-        secureTextEntry
-      />
-
-      <Pressable style={styles.button} onPress={handleSignup}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+      <Pressable style={styles.signupButton} onPress={handleSignup}>
+        <Text style={styles.signupButtonText}>Sign Up</Text>
       </Pressable>
     </View>
   );
@@ -60,27 +63,34 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-    fontSize: 32,
-    marginBottom: 24,
-    textAlign: 'center',
+    fontSize: 28,
+    marginBottom: 32,
     fontWeight: 'bold',
+    color: '#ff6f91',
+    textAlign: 'left',
+    marginLeft: 4,
   },
   input: {
     height: 48,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
+    borderColor: '#bbb',
+    borderWidth: 1.5,
+    borderRadius: 24,
     marginBottom: 16,
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
+    backgroundColor: '#fff',
+    fontSize: 16,
   },
-  button: {
-    backgroundColor: '#2e86de',
+  signupButton: {
+    backgroundColor: '#ff6f91',
     paddingVertical: 14,
-    borderRadius: 8,
+    borderRadius: 24,
+    marginTop: 8,
+    alignItems: 'center',
   },
-  buttonText: {
+  signupButtonText: {
     color: '#fff',
     textAlign: 'center',
     fontSize: 16,
+    fontWeight: 'bold',
   },
 });
