@@ -4,15 +4,14 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 export default function Index() {
   return (
     <View style={styles.container}>
-      <Text style={styles.pink}>Say hello to your new app</Text>
-      <TouchableOpacity style={styles.login}>
-       <Link href="/login">Log in</Link>
-       </TouchableOpacity>
-
-       <TouchableOpacity style={styles.signup}>
-       <Link href="/signup">Signup</Link>
-       </TouchableOpacity>
-      </View>
+      <Text style={styles.title}>Say hello to your new app</Text>
+      <TouchableOpacity style={styles.login} activeOpacity={0.8}>
+        <Link href="/login" style={styles.loginText}>Log In</Link>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.signup} activeOpacity={0.8}>
+        <Link href="/signup" style={styles.signupText}>Sign Up</Link>
+      </TouchableOpacity>
+    </View>
   );
 }
 
@@ -21,31 +20,42 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: 'white',
   },
-  pink: {
-    color: '#ffc0cb',
-    fontSize: 30,
+  title: {
+    color: '#ff6f91',
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 60,
+    textAlign: 'center',
   },
   login: {
     borderRadius: 30,
-    width: 300,
-    padding: 10,
-    backgroundColor: '#ffc0cb',
+    width: 280,
+    height: 45,
+    backgroundColor: '#ff6f91',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 50,
+    marginBottom: 18,
+  },
+  loginText: {
     color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   signup: {
     borderRadius: 30,
-    width: 300,
-    padding: 10,
+    width: 280,
+    height: 45,
     backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: '#ff6f91',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 50,
-    marginTop: 20,
+  },
+  signupText: {
+    color: '#ff6f91',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
