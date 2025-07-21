@@ -6,11 +6,21 @@ const SignupScreen: React.FC = () => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [submitted, setSubmitted] = useState(false);
   const handleSignup = () => {
-    // Add your signup logic here
-    console.log('Signing up with:', fullName, phone, email, password);
+   if ( fullName && phone && email && password) {
+      setSubmitted(true);
+    } else {
+      alert('Please fill out all field.');
+    }
   };
+  const handleClear = () => {
+    setFullName(''),
+    setPhone(''),
+    setEmail('');
+    setPassword('');
+    setSubmitted(false);
+  }
 
   return (
     <View style={styles.container}>
@@ -49,6 +59,19 @@ const SignupScreen: React.FC = () => {
       <Pressable style={styles.signupButton} onPress={handleSignup}>
         <Text style={styles.signupButtonText}>Sign Up</Text>
       </Pressable>
+       <Pressable style= {[styles.clearButton]} onPress={handleClear}>
+            <Text style={styles.signupButtonText}>Clear</Text>
+            </Pressable>
+
+      {submitted && (
+                <View style={{marginTop: 50}}>
+                <Text style={{fontWeight: 'bold'}}>Submitted Information </Text>
+                  <Text>Email: {fullName}</Text>
+                  <Text>Password: {phone}</Text>
+                  <Text>Email: {email}</Text>
+                  <Text>Password: {password}</Text>
+                </View>
+              )}
     </View>
   );
 };
@@ -79,6 +102,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor: '#fff',
     fontSize: 16,
+  },
+  clearButton: {
+    backgroundColor: '#ff0000',
+    paddingVertical: 14,
+    borderRadius: 24,
+    marginTop: 8,
+    marginBottom: 18,
+    alignItems: 'center',
   },
   signupButton: {
     backgroundColor: '#ff6f91',
